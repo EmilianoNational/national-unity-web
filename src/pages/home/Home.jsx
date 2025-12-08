@@ -9,16 +9,72 @@ import Hero from "../../components/home-page/home-1/Hero";
 import IntroAbout from "../../components/home-page/home-1/IntroAbout";
 import Service from "../../components/home-page/home-1/Service";
 import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import HeroSlider from "@/components/home-page/home-1/HeroSlider";
+import { use } from "react";
 
 const Insurance = () => {
   const { t } = useTranslation()
 
   const home = t("home") 
+ useEffect(() => {
+    const snowContainer = document.querySelector('.snow-container');
+    if (!snowContainer) return;
+
+    const snowflakeCount = 75;
+
+    for (let i = 0; i < snowflakeCount; i++) {
+      const snowflake = document.createElement('div');
+      snowflake.classList.add('snowflake');
+      snowflake.textContent = '❄';
+      
+      // Crear 3 capas de profundidad
+      const depth = Math.random();
+      let size, opacity, blur, duration;
+      
+      if (depth < 0.33) {
+        // Capa trasera (lejos) - pequeños, lentos, desenfocados
+        size = Math.random() * 5 + 8;
+        opacity = 0.3 + Math.random() * 0.2;
+        blur = 2;
+        duration = 20;
+      } else if (depth < 0.66) {
+        // Capa media
+        size = Math.random() * 7 + 12;
+        opacity = 0.5 + Math.random() * 0.3;
+        blur = 1;
+        duration = 17;
+      } else {
+        // Capa frontal (cerca) - grandes, rápidos, nítidos
+        size = Math.random() * 15 + 20;
+        opacity = 0.7 + Math.random() * 0.3;
+        blur = 0;
+        duration = 17;
+      }
+      
+      snowflake.style.left = Math.random() * 100 + 'vw';
+      snowflake.style.animationDuration = duration + 's';
+      snowflake.style.animationDelay = Math.random() * duration + 's';
+      snowflake.style.fontSize = size + 'px';
+      snowflake.style.opacity = opacity;
+      snowflake.style.filter = `blur(${blur}px)`;
+      snowflake.style.animationIterationCount = 'infinite';
+
+      snowContainer.appendChild(snowflake);
+    }
+
+    // Cleanup al desmontar el componente
+    return () => {
+      if (snowContainer) {
+        snowContainer.innerHTML = '';
+      }
+    };
+  }, []);
 
   return (
     <>
+   
       <Seo pageTitle="Insurance" />
       {/* <!-- 
       =============================================
@@ -31,6 +87,7 @@ const Insurance = () => {
 			Theme Hero Banner
 			============================================== 
 			--> */}
+      <div className="snow-container"></div>
       <Hero />
       {/*<HeroSlider />*/}
       {/* 

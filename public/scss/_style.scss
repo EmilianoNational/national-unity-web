@@ -6934,16 +6934,16 @@ body .btn-twentySix:hover:after {
   .hero-banner-ten .illustration-one {
     display: block;
     position: absolute;
-    right: 0;
-    bottom: 0;
-    width: 25.44%;
+    right: 20px;
+    bottom: 10%;
+    width: 20.44%;
     z-index: -1;
   }
   .hero-banner-ten .illustration-two {
     display: block;
     position: absolute;
-    left: 0;
-    bottom: 0;
+    left: 20px;
+    bottom: 10%;
     width: 28.05%;
     z-index: -1;
   }
@@ -10824,9 +10824,7 @@ circle:hover {
   padding-left: 16px;
 }
 
-.hero-camion {
-  width: 50% !important;
-}
+
 
 .card-style-sixteen2 {
   padding: 75px 15px 90px;
@@ -11023,7 +11021,7 @@ circle:hover {
   }
 
   .hero-camion {
-    width: 45% !important;
+    width: 32% !important;
   }
 
   .puentes {
@@ -11500,4 +11498,84 @@ body {
       rem;
   }
 
+}
+.snow-container {
+    position: fixed; /* Mantiene el contenedor de nieve fijo en la ventana */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Permite interactuar con el contenido debajo */
+    z-index: 1;
+}
+
+.snowflake {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    color: #00bde5;
+    top: -40px;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: fall linear forwards; /* 'forwards' mantiene el copo al final de la animación */
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-10vh);
+    }
+    100% {
+        transform: translateY(110vh);
+    }
+}
+
+.maskRevel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000; /* El color de la cortina */
+    z-index: 9999;
+    opacity: 1;
+
+    /* --- DEFINICIÓN DE LA MÁSCARA --- */
+    /* 1. El icono (Gorro) y 2. Una capa sólida completa (Gradiente) */
+    -webkit-mask-image: url(/images/icon/hat-santa.svg), linear-gradient(#000,#000);
+    mask-image: url(/images/icon/hat-santa.svg), linear-gradient(#000,#000);
+
+    /* --- POSICIÓN --- */
+    /* El gorro al centro, el fondo cubre todo */
+    -webkit-mask-position: center, center;
+    mask-position: center, center;
+
+    /* --- REPETICIÓN --- */
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+
+    /* --- TAMAÑO INICIAL --- */
+    /* 200px para el gorro, 100% para el fondo sólido */
+    -webkit-mask-size: 200px, 100%;
+    mask-size: 200px, 100%;
+
+    /* --- LA MAGIA (El Recorte) --- */
+    /* Esto le dice al navegador: "Donde esté el gorro, hazlo transparente" */
+    -webkit-mask-composite: source-out; 
+    mask-composite: exclude; 
+
+    /* --- TRANSICIÓN CORREGIDA --- */
+    /* Juntamos las prefijadas y la estándar en una sola definición separada por comas */
+    transition: 
+        -webkit-mask-size 1.5s cubic-bezier(.85,0,0.15,1),
+        mask-size 1.5s cubic-bezier(.85,0,0.15,1),
+        opacity .5s ease 1.5s;
+}
+
+.maskRevel.revealed {
+    /* Aumentamos el gorro a 3500px, el fondo sigue al 100% */
+    -webkit-mask-size: 40000px, 100%;
+    mask-size: 40000px, 100%;
+    
+    opacity: 0;
+    pointer-events: none;
 }
