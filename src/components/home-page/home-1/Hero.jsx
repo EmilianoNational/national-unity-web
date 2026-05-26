@@ -19,13 +19,13 @@ const Hero1 = () => {
       data-aos="fade-up"
     >
       <img
-        src="/images/assets/Santa_auto.webp"
+        src="/images/assets/hero-camion-removebg.webp"
         alt="ilustration"
         loading="lazy"
         className="hero-camion lazy-img illustration-one"
       />
       <img
-        src="/images/assets/christmas_hero_auto.webp"
+        src="/images/assets/hero-auto.webp"
         alt="ilustration"
         loading="lazy"
         className="lazy-img illustration-two "

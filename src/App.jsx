@@ -65,7 +65,7 @@ function App() {
           </Route>
         </Routes>
         <ScrollTopBehaviour />
-        <Zendesk />
+        {/* <Zendesk /> */}
         <Whatsapp />
       </div>
     </LanguageContext.Provider>
